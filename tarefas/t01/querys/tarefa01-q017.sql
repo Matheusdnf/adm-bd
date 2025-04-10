@@ -9,8 +9,3 @@ where g.salario = (select max(salario) from gerentes);
 
 select p.codigo,p.descricao from projeto p
 join gerente_mais_rico gmr on p.cod_depto = gmr.cod_dep;
-
-
-
-
-
