@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS funcionario;
 DROP TABLE IF EXISTS departamento;
 
 
-
 CREATE TABLE departamento (
     codigo SERIAL PRIMARY KEY,
     descricao VARCHAR(100),
