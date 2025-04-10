@@ -10,5 +10,3 @@ from departamento d
 left join funcionario f on f.codigo = d.cod_gerente
 left join funcionarios_por_departamento fd on fd.cod_depto = d.codigo;
 
-
-
