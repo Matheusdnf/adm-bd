@@ -43,4 +43,6 @@ Com o `CROSS JOIN`, é possível gerar todas as combinações possíveis entre f
     CROSS JOIN cor
     CROSS JOIN horario;
 
-<!-- # Windows Functions no PostgreSQL -->
+### Window Functions no PostgreSQL
+
+**Window Functions** no PostgreSQL são funções que permitem realizar cálculos sobre um conjunto de linhas relacionadas à linha atual, sem a necessidade de agrupar os dados como ocorre com o `GROUP BY`. Elas são úteis para gerar rankings, totais acumulados, médias móveis, ou acessar valores de outras linhas (anteriores ou posteriores), mantendo todas as linhas da consulta original. Essas funções utilizam a cláusula `OVER()` e podem ser configuradas com `PARTITION BY` e `ORDER BY` para definir como a “janela” de dados será aplicada em cada linha.
