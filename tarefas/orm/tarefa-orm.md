@@ -1,45 +1,3 @@
-# Verificar containers ativos
-
-docker ps -a
-cdca75aa6af8 dpage/pgadmin4 "/entrypoint.sh" 7 minutes ago Up 7 minutes 0.0.0.0:80->80/tcp, :::80->80/tcp, 443/tcp pgadmin
-05aa76bf5cf6 postgres:latest "docker-entrypoint.s…" 9 minutes ago Up 9 minutes 0.0.0.0:5432->5432/tcp, :::5432->5432/tcp postgres_db
-
-# iniciar um container no docker
-
-docker start <nome_ou_id_do_container>
-docker start postgres_db
-
-# criar o container do banco de dados
-
-docker run --name postgres_db \
- -e POSTGRES_USER=usuario \
- -e POSTGRES_PASSWORD=senha123 \
- -e POSTGRES_DB=AtividadesBD \
- -v postgres_data:/var/lib/postgresql/data \
- -p 5432:5432 \
- -d postgres:latest
-
-user_name:usuario
-password:senha123
-nome_do_banco:AtividadesBD
-funcionando:localhost
-porta:5432
-
-## criar container do pgadmin
-
-docker run --name pgadmin \
- -e PGADMIN_DEFAULT_EMAIL=admin@admin.com \
- -e PGADMIN_DEFAULT_PASSWORD=admin123 \
- -p 80:80 \
- --link postgres_db:db \
- -d dpage/pgadmin4
-
-email:admin@admin.com
-password:admin123
-porta:localhot:80
-
-[Esquema_SQL](./esquema_bd.sql)
-
 ## Resumo ODBC
 
 ODBC (Open Database Connectivity) funciona como uma ponte ou tradutor entre um software e diferentes sistemas de banco de dados. Isso permite que um programa — independentemente da linguagem de programação utilizada, como Python, Java, Excel, entre outras — conecte-se a vários bancos de dados distintos utilizando uma única linguagem padrão: o SQL.
@@ -75,7 +33,7 @@ conn.close()
 
 ```
 
-## Resumo ORM
+## Resumo ORM e Aplicação
 
 resumo orm em python
 
@@ -111,22 +69,78 @@ class Departamento(models.Model):
 ````
 `````
 
+# Criar o Container do BD
+
+docker run --name postgres_db \
+ -e POSTGRES_USER=usuario \
+ -e POSTGRES_PASSWORD=senha123 \
+ -e POSTGRES_DB=AtividadesBD \
+ -v postgres_data:/var/lib/postgresql/data \
+ -p 5432:5432 \
+ -d postgres:latest
+
+user_name:usuario
+password:senha123
+nome_do_banco:AtividadesBD
+funcionando:localhost
+porta:5432
+
+## Criar Container Pgadmin
+
+docker run --name pgadmin \
+ -e PGADMIN_DEFAULT_EMAIL=admin@admin.com \
+ -e PGADMIN_DEFAULT_PASSWORD=admin123 \
+ -p 80:80 \
+ --link postgres_db:db \
+ -d dpage/pgadmin4
+
+email:admin@admin.com
+password:admin123
+porta:localhot:80
+
+## Utilização PG Admin
+
+Entre em **Localhost:80** e insira o login
+
+email:admin@admin.com
+
+password:admin123
+
+porta:localhot:80
+
+# Esquema do Banco De Dados
+
+[Banco_De_Dados](/tarefa_bd/tarefas/orm/esquema_bd.sql)
+
+[Querys](/tarefa_bd/tarefas/orm/querys.sql)
 
 ## Driver Para Instalar O postgress no Django
+
 **pip install psycopg2-binary**
 
-
 ## Arquivo Models
+
 [Models](./django/orm_django/app_django/models.py)
 
 ### Comandos para executar após criar o models
+
 ```
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-## Script De Povoamento Do banco 
+## Script De Povoamento Do banco
+
 [Povoamento](./django/orm_django/app_django/management/commands/seed.py)
+
 ### Comando para realizar o povoamento
+
 **python manage.py seed**
-    
+
+## Rodar Final
+
+Agora rode o django **Python manage.py runserver**
+
+# Teste
+
+E teste as querys nas telas
