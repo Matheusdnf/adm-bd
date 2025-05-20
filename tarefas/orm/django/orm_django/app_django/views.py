@@ -11,7 +11,7 @@ def adicionar_atividade(request):
     else:
         form = AtividadeForm()
     return render(request, 'telas/adicionar_atividade.html', {'form': form})
-
+    
 def atualizar_lider(request):
     if request.method == 'POST':
         form = AtualizarLiderForm(request.POST)
@@ -28,3 +28,6 @@ def atualizar_lider(request):
 def listar_projetos(request):
     projetos = Projeto.objects.all().prefetch_related('atividade_set')
     return render(request, 'telas/listar_projetos.html', {'projetos': projetos})
+
+def home(request):
+    return render(request, 'telas/tela_inicial.html')
