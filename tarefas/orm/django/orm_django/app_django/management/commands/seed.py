@@ -74,3 +74,4 @@ for desc, projeto, inicio, fim in atividades:
     Atividade.objects.create(descricao=desc, projeto=projeto, data_inicio=date.fromisoformat(inicio), data_fim=date.fromisoformat(fim))
 
 print("Banco de dados povoado!")
+
