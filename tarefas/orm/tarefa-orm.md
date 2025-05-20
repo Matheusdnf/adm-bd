@@ -46,6 +46,8 @@ ODBC (Open Database Connectivity) funciona como uma ponte ou tradutor entre um s
 
 O funcionamento do ODBC baseia-se no uso de comandos SQL padronizados. Quando o programa envia uma consulta SQL, o ODBC utiliza drivers específicos para cada banco de dados para traduzir esses comandos genéricos para a linguagem particular de cada sistema. Dessa forma, o banco de dados entende e executa as operações solicitadas, e os resultados das consultas (queries) são retornados ao programa através do mesmo caminho,simplifica a comunicação entre aplicações e bancos de dados.
 
+### Utilização No Python
+
 No Python, o ODBC é utilizado por meio da biblioteca **pyodbc**, que permite que se conecte a bancos de dados compatíveis com ODBC usando tal interface.
 
 ```
@@ -76,3 +78,35 @@ conn.close()
 ## Resumo ORM
 
 resumo orm em python
+
+ORM(Mapeamento Objeto-Relacional). Faz a ponte entre bancos de dados relacionais (tabelas, SQL) e linguagens orientadas a objetos (classes, objetos).
+
+- Transforma tabelas em classes
+
+- Transforma linhas em objetos
+
+- Manipula o banco usando a linguagem da sua aplicação, sem precisar escrever SQL diretamente
+
+### Utilização No Django
+
+No Django,a definição é feita na classe de modelos (models) como classes Python que representam tabelas no banco de dados. Cada atributo da classe representa uma coluna da tabela.
+
+`````
+from django.db import models
+
+class Funcionario(models.Model):
+    nome = models.CharField(max_length=150)
+    sexo = models.CharField(max_length=1)
+    dt_nasc = models.DateField()
+    salario = models.DecimalField(max_digits=10, decimal_places=2)
+    supervisor = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
+    depto = models.ForeignKey('Departamento', null=True, blank=True, on_delete=models.SET_NULL)
+
+class Departamento(models.Model):
+    nome = models.CharField(max_length=100)
+    sigla = models.CharField(max_length=10, unique=True)
+    descricao = models.TextField()
+    gerente = models.ForeignKey(Funcionario, null=True, blank=True, on_delete=models.SET_NULL)
+
+````
+`````
