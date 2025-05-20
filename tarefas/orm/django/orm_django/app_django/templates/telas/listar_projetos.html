@@ -1,0 +1,19 @@
+{% for projeto in projetos %}
+    <p>Projeto: {{ projeto.nome }}</p>
+    <p>Responsável:
+        {% if projeto.responsavel %}
+            {{ projeto.responsavel.nome }}
+        {% else %}
+            Sem responsável
+        {% endif %}
+    </p>
+
+    <ul>
+        {% for atividade in projeto.atividade_set.all %}
+            <li>{{ atividade.descricao }} ({{ atividade.data_inicio }} - {{ atividade.data_fim }})</li>
+        {% empty %}
+            <li>Nenhuma atividade cadastrada.</li>
+        {% endfor %}
+    </ul>
+    <hr>
+{% endfor %}

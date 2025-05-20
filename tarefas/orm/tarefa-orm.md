@@ -110,3 +110,23 @@ class Departamento(models.Model):
 
 ````
 `````
+
+
+## Driver Para Instalar O postgress no Django
+**pip install psycopg2-binary**
+
+
+## Arquivo Models
+[Models](./django/orm_django/app_django/models.py)
+
+### Comandos para executar após criar o models
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+## Script De Povoamento Do banco 
+[Povoamento](./django/orm_django/app_django/management/commands/seed.py)
+### Comando para realizar o povoamento
+**python manage.py seed**
+    
