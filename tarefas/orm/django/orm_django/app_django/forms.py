@@ -10,3 +10,4 @@ class AtividadeForm(forms.ModelForm):
 class AtualizarLiderForm(forms.Form):
     projeto = forms.ModelChoiceField(queryset=Projeto.objects.all())
     novo_responsavel = forms.ModelChoiceField(queryset=Funcionario.objects.all())
+
